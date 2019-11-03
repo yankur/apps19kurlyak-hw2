@@ -13,15 +13,15 @@ public class Stack {
         if (stack.isEmpty()) {
             return new IndexOutOfBoundsException();
         }
-        return stack.getFirst();
+        return stack.getLast();
     }
 
     Object pop() {
         if (stack.isEmpty()) {
             return new IndexOutOfBoundsException();
         }
-        Object res = stack.getFirst();
-        stack = stack.removeFirst();
+        Object res = stack.getLast();
+        stack = stack.removeLast();
         return res;
     }
 
