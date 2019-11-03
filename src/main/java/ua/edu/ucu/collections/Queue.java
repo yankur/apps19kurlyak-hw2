@@ -2,34 +2,34 @@ package ua.edu.ucu.collections;
 
 import ua.edu.ucu.collections.immutable.ImmutableLinkedList;
 
-public class Stack {
-    private ImmutableLinkedList stack;
+public class Queue {
+    private ImmutableLinkedList queue;
 
-    public Stack() {
-        stack = new ImmutableLinkedList();
+    public Queue() {
+        queue = new ImmutableLinkedList();
     }
 
     Object peek() {
-        if (stack.isEmpty()) {
+        if (queue.isEmpty()) {
             return new IndexOutOfBoundsException();
         }
-        return stack.getLast();
+        return queue.getFirst();
     }
 
-    Object pop() {
-        if (stack.isEmpty()) {
+    Object dequeue() {
+        if (queue.isEmpty()) {
             return new IndexOutOfBoundsException();
         }
-        Object res = stack.getLast();
-        stack = stack.removeLast();
+        Object res = queue.getFirst();
+        queue = queue.removeFirst();
         return res;
     }
 
-    void push(Object e) {
-        stack = stack.addLast(e);
+    void enqueue(Object e) {
+        queue = queue.addFirst(e);
     }
 
     Object[] toArray() {
-        return stack.toArray();
+        return queue.toArray();
     }
 }
