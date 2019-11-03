@@ -53,8 +53,8 @@ public class ImmutableArrayList implements ImmutableList {
         else if (size > 0 && sizeC == 0) {
             newArr = Arrays.copyOf(arr, size);
         }
-        else if (size == 0 && sizeC == 0){
-            return new ImmutableArrayList();
+        else if (size == 0 && sizeC > 0){
+            newArr = Arrays.copyOf(c, sizeC);
         }
         return new ImmutableArrayList(newArr);
     }
