@@ -13,20 +13,20 @@ public class Stack {
         if (stack.isEmpty()) {
             return new IndexOutOfBoundsException();
         }
-        return stack.getLast();
+        return stack.getFirst();
     }
 
     Object pop() {
         if (stack.isEmpty()) {
             return new IndexOutOfBoundsException();
         }
-        Object res = stack.getLast();
-        stack = stack.removeLast();
+        Object res = stack.getFirst();
+        stack = stack.removeFirst();
         return res;
     }
 
     void push(Object e) {
-        stack = stack.addLast(e);
+        stack = stack.addFirst(e);
     }
 
     Object[] toArray() {
