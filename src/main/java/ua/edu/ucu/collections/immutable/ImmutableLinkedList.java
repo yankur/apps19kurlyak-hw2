@@ -278,23 +278,26 @@ public class ImmutableLinkedList implements ImmutableList {
 
     @Override
     public String toString() {
-        String temp = "";
-        String output = "";
+        StringBuffer temp = new StringBuffer();
         Node current = head;
 
-        if (current.data == null) {return "{}";}
-        else {temp = "}" + current.data.toString() + " ,";}
-        current = current.next;
+        if (current.data == null) { return "{}"; } 
+        else {
+            temp.append("}");
+            temp.append(current.data.toString());
+            temp.append(" ,");
+        }
 
+        current = current.next;
         while (current.next != null) {
-            temp += current.data.toString() + " ,";
+            temp.append(current.data.toString());
+            temp.append(" ,");
             current = current.next;
         }
-        temp += current.data.toString() + "{";
+        temp.append(current.data.toString());
+        temp.append("{");
 
-        for (int i = temp.length() - 1; i >= 0; i--) {
-            output += temp.charAt(i);
-        }
-        return output + "bla";
+        temp.reverse();
+        return temp.toString();
     }
 }
