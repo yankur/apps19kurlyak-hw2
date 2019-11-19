@@ -52,7 +52,7 @@ public class ImmutableArrayList implements ImmutableList {
         else if (size > 0 && sizeC == 0) {
             newArr = Arrays.copyOf(arr, size);
         }
-        else if (size == 0 && sizeC > 0){
+        else if (size == 0 && sizeC > 0) {
             newArr = Arrays.copyOf(c, sizeC);
         }
         return new ImmutableArrayList(newArr);
@@ -137,7 +137,7 @@ public class ImmutableArrayList implements ImmutableList {
 
     @Override
     public Object[] toArray() {
-        if (size != 0){
+        if (size != 0) {
             return Arrays.copyOf(arr, size);
         }
         return new Object[]{};
