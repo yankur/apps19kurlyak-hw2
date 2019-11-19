@@ -7,8 +7,7 @@ public class ImmutableArrayList implements ImmutableList {
     private int size;
 
     public ImmutableArrayList() {
-        arr = new Object[8];
-        size = 0;
+        arr = new Object[]{};
     }
 
     public ImmutableArrayList(Object[] newArr) {
@@ -112,8 +111,10 @@ public class ImmutableArrayList implements ImmutableList {
     @Override
     public int indexOf(Object e) {
         if (size != 0) {
-            for (int i= 0; i < size; i++) {
-                if (arr[i] == e) {return i;}
+            for (int i = 0; i < size; i++) {
+                if (e.equals(arr[i])) {
+                    return i;
+                }
             }
         }
         throw new IllegalArgumentException();
@@ -139,6 +140,17 @@ public class ImmutableArrayList implements ImmutableList {
         if (size != 0){
             return Arrays.copyOf(arr, size);
         }
-        return new Object[1];
+        return new Object[]{};
+    }
+
+    @Override
+    public String toString() {
+        String output = "{";
+        output += arr[0].toString();
+        for (int i = 1; i < size; i++) {
+            output += ", " + arr[i].toString();
+        }
+        output += "}";
+        return output;
     }
 }
