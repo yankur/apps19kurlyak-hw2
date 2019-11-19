@@ -1,7 +1,7 @@
 package ua.edu.ucu.collections.immutable;
 
 public class ImmutableLinkedList implements ImmutableList {
-        private Node head;
+    private Node head;
 
         static class Node {
             Object data;
@@ -40,7 +40,7 @@ public class ImmutableLinkedList implements ImmutableList {
             return new ImmutableLinkedList(newHead);
     }
 
-    public ImmutableList addFirst(Object e) {
+    public ImmutableLinkedList addFirst(Object e) {
         Node newHead;
         if (head.data == null) {
             return new ImmutableLinkedList(new Node(e));
@@ -52,7 +52,7 @@ public class ImmutableLinkedList implements ImmutableList {
         return new ImmutableLinkedList(newHead);
         }
 
-    public ImmutableList addLast(Object e) {
+    public ImmutableLinkedList addLast(Object e) {
         ImmutableLinkedList newImmL = copyList();
         Node newHead = newImmL.head;
         Node current = newHead;
@@ -193,10 +193,9 @@ public class ImmutableLinkedList implements ImmutableList {
         }
         ImmutableLinkedList immL = copyList();
         Node current = immL.head;
-        Node currNext = current.next;
-        while (currNext != null) {
-            current = currNext;
-            currNext = currNext.next;
+        if (current.next == null) {return new ImmutableLinkedList();}
+        while (current.next.next != null) {
+            current = current.next;
         }
         current.next = null;
         return immL;
@@ -224,8 +223,8 @@ public class ImmutableLinkedList implements ImmutableList {
     public int indexOf(Object e) {
         Node current = head;
         int count = 0;
-        while (count != size()-1) {
-            if (current.data == e) {
+        while (count <= size()-1) {
+            if (current.data.equals(e)) {
                 return size() - count - 1;
             }
             current = current.next;
@@ -236,13 +235,13 @@ public class ImmutableLinkedList implements ImmutableList {
 
     @Override
     public int size() {
+        if (head.data == null) {return 0;}
         Node current  = head;
         int count = 1;
         while (current.next != null) {
                 count += 1;
                 current = current.next;
             }
-        if (count == 1) {return 0;}
         return count;
     }
 
@@ -253,14 +252,14 @@ public class ImmutableLinkedList implements ImmutableList {
 
     @Override
     public boolean isEmpty() {
-        return  head.data != null;
+        return  head.data == null;
     }
 
     @Override
     public Object[] toArray() {
         Object[] newArr;
-        if (head == null){
-            return new Object[0];
+        if (head.data == null){
+            return new Object[]{};
         }
         else {
             Node current = head;
@@ -275,5 +274,27 @@ public class ImmutableLinkedList implements ImmutableList {
             }
             return arr;
         }
+    }
+
+    @Override
+    public String toString() {
+        String temp = "";
+        String output = "";
+        Node current = head;
+
+        if (current.data == null) {return "{}";}
+        else {temp = "}" + current.data.toString() + " ,";}
+        current = current.next;
+
+        while (current.next != null) {
+            temp += current.data.toString() + " ,";
+            current = current.next;
+        }
+        temp += current.data.toString() + "{";
+
+        for (int i = temp.length() - 1; i >= 0; i--) {
+            output += temp.charAt(i);
+        }
+        return output + "bla";
     }
 }
