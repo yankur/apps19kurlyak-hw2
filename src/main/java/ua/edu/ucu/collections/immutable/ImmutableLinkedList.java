@@ -44,13 +44,14 @@ public class ImmutableLinkedList implements ImmutableList {
         Node newHead;
         if (head.data == null) {
             return new ImmutableLinkedList(new Node(e));
-        }
+        } 
         else {
-            newHead = new Node(e);;
+            newHead = new Node(e);
+            ;
             newHead.next = head;
-            }
-        return new ImmutableLinkedList(newHead);
         }
+        return new ImmutableLinkedList(newHead);
+    }
 
     public ImmutableLinkedList addLast(Object e) {
         ImmutableLinkedList newImmL = copyList();
