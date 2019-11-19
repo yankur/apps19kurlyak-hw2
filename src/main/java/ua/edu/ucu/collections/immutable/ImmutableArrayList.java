@@ -145,12 +145,14 @@ public class ImmutableArrayList implements ImmutableList {
 
     @Override
     public String toString() {
-        String output = "{";
-        output += arr[0].toString();
-        for (int i = 1; i < size; i++) {
-            output += ", " + arr[i].toString();
+        StringBuffer buf = new StringBuffer();
+        buf.append("{");
+        buf.append(arr[0]);
+        for (int i = 1; i < arr.length; ++i) {
+            buf.append(", ");
+            buf.append(arr[i]);
         }
-        output += "}";
-        return output;
+        buf.append("}");
+        return buf.toString();
     }
 }
